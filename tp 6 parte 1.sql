@@ -52,3 +52,10 @@ INSERT INTO p5p1e1_contiene (id_articulo, idioma, cod_palabra) VALUES
 INSERT INTO p5p1e1_contiene (id_articulo, idioma, cod_palabra) VALUES(7, 'ES', 1);
 
 
+/*
+Sólo los autores argentinos pueden publicar artículos que contengan más de 10 palabras
+claves, pero con un tope de 15 palabras, el resto de los autores sólo pueden publicar
+artículos que contengan hasta 10 palabras claves.
+
+
+*/

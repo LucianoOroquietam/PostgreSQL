@@ -137,22 +137,37 @@ END;
 $$ LANGUAGE 'plpgsql';
 ```
 
-ALGUNAS VARIABLES 
+## VARIABLES 
 
-TG_NAME Tipo de dato text; variable que contiene el nombre del
-trigger actualmente disparado.
+* numero1     ALIAS FOR `$1;       // Primer parámetro
+* numero2     ALIAS FOR `$2;        // Segundo parámetro
 
-TG_WHEN Tipo de dato text; una cadena conteniendo el string
-BEFORE o AFTER dependiendo de la definición del trigger.
+* constante   CONSTANT integer := 100; 
 
-TG_LEVEL Tipo de dato text; una cadena conteniendo el string ROW
-o STATEMENT dependiendo de la definición del trigger.
+* resultado     INTEGER; 
 
-TG_OP Tipo de dato text; una cadena conteniendo el string INSERT,
-UPDATE o DELETE indicando por cuál operación se disparó el trigger.
+* resultado_txt   TEXT DEFAULT   'Texto por defecto'; 
 
-TG_TABLE_NAME Tipo de dato text; variable que contiene el
-nombre de la tabla que disparó el trigger
+* tipo_reg   voluntario%rowtype;    
+// variable del tipo registro
+* tipo_col   voluntario.nombre%type;  
+// variable del tipo columna
+
+
+* TG_NAME Tipo de dato text; variable que contiene el nombre del
+  trigger actualmente disparado.
+ 
+* TG_WHEN Tipo de dato text; una cadena conteniendo el string
+  BEFORE o AFTER dependiendo de la definición del trigger.
+ 
+* TG_LEVEL Tipo de dato text; una cadena conteniendo el string ROW
+  o STATEMENT dependiendo de la definición del trigger.
+ 
+* TG_OP Tipo de dato text; una cadena conteniendo el string INSERT,
+  UPDATE o DELETE indicando por cuál operación se disparó el trigger.
+ 
+* TG_TABLE_NAME Tipo de dato text; variable que contiene el
+  nombre de la tabla que disparó el trigger
 
 
 ## Eventos y Activación

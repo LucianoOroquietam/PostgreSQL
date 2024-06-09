@@ -1,0 +1,18 @@
+siempre lo reemplazo porque el trigger lo voy hacer foreach row
+osea en vez de ahcer un group by 
+lo pienso con un where 
+
+levanta la excepcion y hace un rolback del chequeo , va para atras
+
+LA GRACIA DEL INSE OF ES QUE LAS OPERACIONES SE HAGAN DENTRO DE LA FUNCION
+ENTONCES NO TENES Q DEVOLVER NADA
+
+EN OTROS SI PARA Q EL REGISTRO SIGA SU CURSO
+
+todo lo que es control es conveniente hacerlo con for each row
+
+cuando tenes un tema de auditoria es conveniente usar for each stamente
+
+let binding postrgresql lo deja para despues
+como saber que el new tiene un id articulo? filimina 25
+error de ejecucion

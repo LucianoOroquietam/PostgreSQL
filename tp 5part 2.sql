@@ -266,9 +266,12 @@ CHECK ((descuento) BETWEEN 0 AND 100 );
 CREATE ASSERTION ck_descuento_fecha_liq
        CHECK(NOT EXIST (SELECT 1
                         FROM P5P2E5_VENTA
-                        WHERE EXTRACT(DAY FROM P5P2E5_fecha_liq) AND (MONTH FROM P5P2E5_fecha_liq)
+                        WHERE EXTRACT(DAY FROM P5P2E5_fecha_liq) 
                         IN (
-                            SELECT dia_liq, mes_liq
+                            SELECT dia_liq
+                            FROM P5P2E5_fecha_liq 
+                        ) AND EXTRACT(MONTH FROM P5P2E5_fecha_liq) IN (
+                            SELECT mes_liq
                             FROM P5P2E5_fecha_liq
                         ) AND
                         descuento <= 30.0

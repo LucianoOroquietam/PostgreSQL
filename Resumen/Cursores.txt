@@ -1,0 +1,44 @@
+A una funcion le puedo decir que retorne una tabla.
+
+Cursores
+una estrutcuta de memoria al cual yo puedo acceder.
+siempre que podamos usar sentencias MASIVAS no debo usar cursores. 
+cursor usa espacio en memoria -- el procesamiento de cada uno de los registros
+se toma su tiempo.
+
+Dos maneras de definir los cursores:
+
+manera implicita 
+para este cursor entra en un loop
+BEGIN
+FOR (variable RECORD) IN (SELECT)
+LOOP (cicla el query que definimos arriba (va de 1 a n el DO))
+RETURN NEXT; (devuelve el registro de la tabla , no va al siguiente del query. 
+siempre que tengo que devolver registros de una tabla retorna el ultimo que procesaste)
+end loop;
+END
+
+
+explicita
+este es un cursor definido por este query este select.
+esa estructura de memoria es como si trabaja con un archivo
+necesario declararlo, abrirlo recorrerlo y cerrarlo.
+tengo q hacer el fetch , el open , el close.
+
+DECLARE 
+	Cursor_1 CURSOR FOR 
+		SELECT * 
+			FROM XTabla
+BEGIN
+	OPEN Cursor_1
+	FETCH Cursor_1
+	IF (NOT FOUND) THEN 
+		EXIT
+		ELSE
+		Cursor_1.id_x;
+	end if;
+	
+	Close Cursor_1;
+
+
+CASE es para una asignacion. WHEN (cuando) THEN (entonces)
