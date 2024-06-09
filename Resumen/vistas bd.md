@@ -59,7 +59,7 @@ aca estamos invocando el resultado de la vista
   - Al actualizar registros en la tabla base, los cambios también se reflejan automáticamente en la vista.
   - Cualquier operación del tipo CRUD realizada en la vista tendrá su efecto correspondiente en la tabla base.
 
-![Diagrama de Actualización en Vistas](image-8.png)
+![Diagrama de Actualización en Vistas](img/image-8.png)
 
 ### Requisitos para una Vista Actualizable
 
@@ -105,13 +105,13 @@ Para ilustrar los conceptos y reglas sobre las vistas y su actualizabilidad, a c
 
 ### Ejemplos de Vistas y su Actualización
 
-![Ejemplo 1](image-3.png)
+![Ejemplo 1](img/image-3.png)
 
-![Ejemplo 2](image-4.png)
+![Ejemplo 2](img/image-4.png)
 
-![Ejemplo 3](image-5.png)
+![Ejemplo 3](img/image-5.png)
 
-![Ejemplo 4](image-6.png)
+![Ejemplo 4](img/image-6.png)
 
 ### ¿Qué Significa que una Vista No Sea Actualizable?
 
@@ -123,7 +123,7 @@ Para ilustrar los conceptos y reglas sobre las vistas y su actualizabilidad, a c
 
 - En PostgreSQL y según el estándar SQL, ciertas vistas pueden ser actualizables si cumplen con las reglas necesarias:
 
-![Vista Actualizable en PostgreSQL](image-7.png)
+![Vista Actualizable en PostgreSQL](img/image-7.png)
 
 ### Vistas de Ensamble
 
@@ -131,14 +131,14 @@ Para ilustrar los conceptos y reglas sobre las vistas y su actualizabilidad, a c
   - Estas vistas se definen a partir de múltiples tablas base.
   - El estándar SQL establece que una vista de ensamble es actualizable si preserva la clave de la tabla del lado N (la tabla con la multiplicidad "muchos" en la relación).
 
-![Ejemplo de Vista de Ensamble Actualizable](image-9.png)
+![Ejemplo de Vista de Ensamble Actualizable](img/image-9.png)
 
 ### PostgreSQL: Ejemplo de Vista No Actualizable
 
 - **No Actualizable en PostgreSQL**: 
   - En algunos casos, incluso si una vista parece cumplir con las reglas del estándar SQL para ser actualizable, PostgreSQL puede no soportar la actualización automática sin asistencia adicional.
 
-![Ejemplo de Vista No Actualizable en PostgreSQL](image-10.png)
+![Ejemplo de Vista No Actualizable en PostgreSQL](img/image-10.png)
 
 ---
 
@@ -146,17 +146,17 @@ Para ilustrar los conceptos y reglas sobre las vistas y su actualizabilidad, a c
 
 - **Pregunta**: ¿Qué sucede si una vista no incluye la clave primaria? ¿Cómo se manejan las operaciones `INSERT`, `DELETE` o `UPDATE` en tales vistas?
   
-  ![Vista sin Clave Primaria](image.png)
+  ![Vista sin Clave Primaria](img/image.png)
 
 - **Consulta Interna**:
   - Cuando ejecutas `SELECT * FROM nombre_de_la_view` (por ejemplo, `empleados_investigadores`), se llama a la consulta interna definida cuando se creó la vista.
 
 - **Ejemplo de Tabla Base y Vista Derivada**:
   - **Tabla Creada**:
-    ![Tabla Base](image-1.png)
+    ![Tabla Base](img/image-1.png)
   
   - **Vista Derivada**:
-    ![Vista Derivada](image-2.png)
+    ![Vista Derivada](img/image-2.png)
     - La vista derivada se crea dinámicamente cuando se invoca, permitiendo uniones (`JOIN`) y ensamblajes con funciones.
 
 ### Concepto: Tabla Derivada
@@ -176,7 +176,7 @@ En resumen, las vistas proporcionan una forma potente y flexible de trabajar con
  
  ### Limitaciones en PostgreSQL y Soluciones
 
-![No Actualizable en PostgreSQL](image-11.png)
+![No Actualizable en PostgreSQL](img/image-11.png)
 
 - **Limitaciones en PostgreSQL**:
   - En PostgreSQL, algunas vistas pueden no ser automáticamente actualizables.
@@ -184,7 +184,7 @@ En resumen, las vistas proporcionan una forma potente y flexible de trabajar con
 
 ### Migración de Vistas
 
-![Migración de Vistas](image-12.png)
+![Migración de Vistas](img/image-12.png)
 
 - **Proceso de Migración**:
   - La migración de vistas implica trasladar la definición de la vista desde un entorno de base de datos a otro.
@@ -196,7 +196,7 @@ En resumen, las vistas proporcionan una forma potente y flexible de trabajar con
   - La cláusula `WITH CHECK OPTION` se utiliza para garantizar que las operaciones `INSERT` y `UPDATE` en la vista cumplan con ciertas condiciones definidas en la vista.
   - Esta cláusula se aplica cuando la vista es actualizable y queremos asegurarnos de que las operaciones mantengan la integridad de los datos.
 
-![Ejemplo de Uso de WITH CHECK OPTION](image-13.png)
+![Ejemplo de Uso de WITH CHECK OPTION](img/image-13.png)
 
 - **Ejemplo de Uso**:
   - Si tenemos una vista como se muestra en el ejemplo y queremos garantizar que solo se inserten o actualicen filas que cumplan con ciertas condiciones (`edad >= 18`), podemos agregar `WITH CHECK OPTION`.
@@ -214,28 +214,28 @@ El manejo de las vistas en PostgreSQL y otros sistemas de gestión de bases de d
 - **Funcionamiento**:
   - Los triggers `INSTEAD OF` en PostgreSQL permiten interceptar operaciones de inserción (`INSERT`), actualización (`UPDATE`) y eliminación (`DELETE`) en una vista y realizar acciones personalizadas en lugar de las operaciones estándar.
 
-![Ejemplo de Trigger INSTEAD OF](image-14.png)
+![Ejemplo de Trigger INSTEAD OF](img/image-14.png)
 
 - **Ejemplo de Uso**:
   - En el ejemplo proporcionado, el trigger `INSTEAD OF` intercepta el evento de inserción en la vista `empleados_investigadores`.
   - Si se intenta realizar una inserción en la vista, el trigger ejecutará una operación personalizada antes de proceder con la inserción en la tabla base.
 
-![Interceptando Operaciones de Actualización](image-15.png)
+![Interceptando Operaciones de Actualización](img/image-15.png)
 
 - **Interceptando Operaciones de Actualización**:
   - Si se intenta realizar una operación de actualización en una vista no actualizable, el código procedural del trigger puede interceptar este evento y ejecutar una lógica personalizada.
 
-![Código del Trigger](image-16.png)
+![Código del Trigger](img/image-16.png)
 
 - **Código del Trigger**:
   - El código del trigger intercepta el evento de inserción en la vista `empleados_investigadores` y realiza una operación personalizada en la tabla base `EMPLEADO`.
 
-![Código del Trigger (Continuación)](image-17.png)
+![Código del Trigger (Continuación)](img/image-17.png)
 
 - **Continuación del Código del Trigger**:
   - La lógica del trigger puede incluir manipulación de datos y verificaciones adicionales para garantizar la integridad de los datos en la tabla base.
 
-![Código del Trigger (Final)](image-18.png)
+![Código del Trigger (Final)](img/image-18.png)
 
 - **Conclusión**:
   - El trigger `INSTEAD OF` se encuentra en la vista y espera eventos sobre la vista en lugar de la tabla base. Esto permite personalizar y controlar las operaciones sobre la vista de acuerdo con las necesidades específicas del sistema.
